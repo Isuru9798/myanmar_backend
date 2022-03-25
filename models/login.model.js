@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { env } = require("process");
+const status = require("../config/status_enums");
 
 const LoginSchema = new mongoose.Schema({
     login_email: {
@@ -32,7 +32,7 @@ const LoginSchema = new mongoose.Schema({
     },
     user_status_string: {
         type: String,
-        default: env.DRIVER
+        default: status.PENDING
     },
 })
 
