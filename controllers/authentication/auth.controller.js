@@ -1,6 +1,5 @@
-const { env } = require("process");
 const UserModel = require("../../models/user.model")
-const Address = require("../../models/address.model");
+const status = require("../../config/status_enums");
 
 exports.register = async (req, res) => {
     const address = {
@@ -15,7 +14,7 @@ exports.register = async (req, res) => {
         user_address: address,
         user_image: 'image',
         user_status: true,
-        user_status_string: env.PENDING
+        user_status_string: status.PENDING
     });
     user.save().then(user => {
         res.status(200).send({

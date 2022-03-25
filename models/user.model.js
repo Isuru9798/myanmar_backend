@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const { env } = require("process");
+const status = require("../config/status_enums");
 const Address = require('./address.model');
 
 const UserSchema = new mongoose.Schema({
@@ -25,7 +25,7 @@ const UserSchema = new mongoose.Schema({
     },
     user_status_string: {
         type: String,
-        default: env.PENDING_STRING
+        default: status.PENDING
     },
 })
 
