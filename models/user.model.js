@@ -1,5 +1,6 @@
 const mongoose = require('mongoose');
-const addressModel = require('./address.model');
+const { env } = require("process");
+const Address = require('./address.model');
 
 const UserSchema = new mongoose.Schema({
     user_first_name: {
@@ -11,7 +12,7 @@ const UserSchema = new mongoose.Schema({
         required: true
     },
     user_address: {
-        type: addressModel,
+        type: Address,
         required: true
     },
     user_image: {
@@ -24,7 +25,7 @@ const UserSchema = new mongoose.Schema({
     },
     user_status_string: {
         type: String,
-        default: daysEnum.friday
+        default: env.PENDING_STRING
     },
 })
 
