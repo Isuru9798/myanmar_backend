@@ -26,15 +26,21 @@ const LoginSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    user_status: {
+    login_status: {
         type: Boolean,
         default: true
     },
-    user_status_string: {
+    login_status_string: {
         type: String,
         default: status.PENDING
     },
-})
+    UsersId: {
+        type: String,
+        ref: "Users"
+    }
+}, {
+    timeseries: true
+});
 
 
 module.exports = mongoose.model('Login', LoginSchema);
