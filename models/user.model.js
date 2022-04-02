@@ -11,10 +11,7 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    user_address: {
-        type: Address,
-        required: true
-    },
+    user_address: Address,
     user_image: {
         type: String,
         required: true

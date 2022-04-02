@@ -8,10 +8,10 @@ const jwt = require("jsonwebtoken");
 
 exports.register = async (req, res) => {
     const address = {
-        address_line_1: req.body.user.address.address_line_1,
-        address_line_2: req.body.user.address.address_line_2,
-        district: req.body.user.address.address_line_1.district,
-        city: req.body.user.address.address_line_1.city
+        address_line_1: req.body.user.user_address.address_line_1,
+        address_line_2: req.body.user.user_address.address_line_2,
+        district: req.body.user.user_address.district,
+        city: req.body.user.user_address.city
     };
     const user = new userModel({
         user_first_name: req.body.user.user_first_name,
@@ -23,7 +23,6 @@ exports.register = async (req, res) => {
     });
     let userExist = await loginModel.findOne({ login_email: req.body.login.login_email, login_status_string: { $ne: status.DEACTIVE } });
     if (userExist) {
-
         return res.status(400).send({
             status: false,
             message: "That user already exisits!"
@@ -36,7 +35,7 @@ exports.register = async (req, res) => {
                 login_mobile: req.body.login.login_mobile,
                 login_mobile_verify: false,
                 login_password: hashSync(req.body.login.login_password, 10),
-                login_type: req.body.login.login_types,
+                login_type: (req.body.login.login_type).trim(),
                 login_status: true,
                 login_status_string: status.PENDING,
                 UsersId: user._id
