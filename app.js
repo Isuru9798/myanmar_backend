@@ -21,6 +21,6 @@ require('./config/passport');
 // route
 app.use(require('./routes/index'));
 
-app.listen(env.PORT || 3000, () => {
+app.listen(env.PORT || 8080, () => {
     console.log("backend server running");
 })
