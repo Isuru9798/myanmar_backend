@@ -3,7 +3,6 @@ const status = require("../../config/status_enums");
 const loginModel = require("../../models/login.model");
 const { hashSync } = require("bcrypt");
 const login_types = require("../../config/roles_enum");
-const { env } = require("process");
 const { compareSync } = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
@@ -81,7 +80,7 @@ exports.login = async (req, res) => {
             login_type: login.login_type,
             id: login._id,
         }
-        const token = jwt.sign(payload, env.KEY, { expiresIn: "1d" });
+        const token = jwt.sign(payload, 'Key', { expiresIn: "1d" });
 
         userModel.findById(login.UsersId).then(user => {
             return res.status(200).send({
