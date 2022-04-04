@@ -1,3 +1,3 @@
-const key='Encode Decode Key';
+const key = 'df376764ba4b1e0efa39d9cf59524087d645b300c3ea98b5bfe99218953684e95daa0bd42f8f58a128f0d67a671b57116414059a8b20e6e5bfa1f605be6db11505a359e604115393b2c0ba8d286159cb';
 
 module.exports = key;
