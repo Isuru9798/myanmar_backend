@@ -85,7 +85,7 @@ exports.login = async (req, res) => {
         userModel.findById(login.UsersId).then(user => {
             return res.status(200).send({
                 status: true,
-                message: "User Login Success",
+                message: "User Login Success deploy",
                 token: "Bearer " + token,
                 data: user
             });
