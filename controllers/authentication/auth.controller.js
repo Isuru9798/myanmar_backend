@@ -5,6 +5,7 @@ const { hashSync } = require("bcrypt");
 const login_types = require("../../config/roles_enum");
 const { compareSync } = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const key = require("../../config/key");
 
 exports.register = async (req, res) => {
     const address = {
@@ -79,7 +80,7 @@ exports.login = async (req, res) => {
             login_type: login.login_type,
             id: login._id,
         }
-        const token = jwt.sign(payload, 'Key', { expiresIn: "1d" });
+        const token = jwt.sign(payload, key, { expiresIn: "1d" });
 
         userModel.findById(login.UsersId).then(user => {
             return res.status(200).send({
