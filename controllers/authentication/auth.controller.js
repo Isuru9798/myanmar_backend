@@ -22,6 +22,7 @@ exports.register = async (req, res) => {
         user_status: true,
         user_status_string: status.PENDING
     });
+    // console.log(user);
     let userExist = await loginModel.findOne({ login_email: req.body.login.login_email, login_status_string: { $ne: status.DEACTIVE } });
     if (userExist) {
         return res.status(400).send({
@@ -54,6 +55,7 @@ exports.register = async (req, res) => {
                 })
             });
         }).catch(err => {
+            console.log(err);
             return res.status(500).send({
                 status: false,
                 message: "user register un-success!"
