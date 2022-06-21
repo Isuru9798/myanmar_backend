@@ -13,7 +13,7 @@ const corsOptions = {
 
 app.use(express.json());
 app.use(passport.initialize());
-// app.use(cors(corsOptions));
+app.use(cors(corsOptions));
 
 require('./config/database');
 require('./config/passport');
