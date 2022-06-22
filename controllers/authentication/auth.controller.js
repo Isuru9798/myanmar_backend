@@ -66,13 +66,13 @@ exports.register = async (req, res) => {
 exports.login = async (req, res) => {
     loginModel.findOne({ login_email: req.body.login_email, login_status_string: { $ne: status.DEACTIVE } }).then(login => {
         if (!login) {
-            return res.status(401).send({
+            return res.status(200).send({
                 status: false,
                 message: "User not found!"
             });
         }
         if (!compareSync(req.body.login_password, login.login_password)) {
-            return res.status(401).send({
+            return res.status(200).send({
                 status: false,
                 message: "Password Incorrect!"
             });
