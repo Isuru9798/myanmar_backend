@@ -105,18 +105,17 @@ exports.tokenVerify = async (req, res) => {
         } else {
             token = tokenWithBear.split(' ')[1];
             const verified = jwt.verify(token, key);
-            console.log(verified);
             if (!verified) {
                 return res.status(401).send({
                     status: false,
-                    message: "token verification faild, unauthorized!",
-                    user_id: verified.id,
-                    token: tokenWithBear
+                    message: "token verification faild, unauthorized!"
                 });
             } else {
                 return res.status(200).send({
                     status: true,
-                    message: "token verified, authorized!"
+                    message: "token verified, authorized!",
+                    user_id: verified.id,
+                    token: tokenWithBear
                 });
             }
         }
