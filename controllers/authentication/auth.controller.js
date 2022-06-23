@@ -94,7 +94,39 @@ exports.login = async (req, res) => {
         });
     });
 }
-
+exports.tokenVerify = async (req, res) => {
+    try {
+        let tokenWithBear = req.header("Authorization");
+        if (!tokenWithBear) {
+            return res.status(401).send({
+                status: false,
+                message: "unauthorized!"
+            });
+        } else {
+            token = tokenWithBear.split(' ')[1];
+            const verified = jwt.verify(token, key);
+            console.log(verified);
+            if (!verified) {
+                return res.status(401).send({
+                    status: false,
+                    message: "token verification faild, unauthorized!",
+                    user_id: verified.id,
+                    token: tokenWithBear
+                });
+            } else {
+                return res.status(200).send({
+                    status: true,
+                    message: "token verified, authorized!"
+                });
+            }
+        }
+    } catch (err) {
+        return res.status(401).send({
+            status: false,
+            message: "unauthorized!"
+        })
+    }
+}
 exports.protect = async (req, res) => {
     return res.status(401).send({
         status: false,
